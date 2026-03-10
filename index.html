@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classic Snake</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #151515;
+        --panel: #1f1f1f;
+        --border: #343434;
+        --text: #efefef;
+        --snake: #55d66b;
+        --head: #9cfca6;
+        --food: #ff5959;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: var(--bg);
+        color: var(--text);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      }
+
+      .app {
+        width: min(92vw, 560px);
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .hud {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.65rem 0.75rem;
+      }
+
+      .actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      button {
+        background: #2b2b2b;
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 0.45rem 0.7rem;
+      }
+
+      .board {
+        aspect-ratio: 1;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(var(--grid-size), 1fr);
+        grid-template-rows: repeat(var(--grid-size), 1fr);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background:
+          linear-gradient(#1b1b1b 1px, transparent 1px),
+          linear-gradient(90deg, #1b1b1b 1px, transparent 1px),
+          #111;
+        background-size: calc(100% / var(--grid-size)) calc(100% / var(--grid-size));
+      }
+
+      .snake-segment,
+      .snake-head,
+      .food {
+        border-radius: 2px;
+        margin: 1px;
+      }
+
+      .snake-segment {
+        background: var(--snake);
+      }
+
+      .snake-head {
+        background: var(--head);
+      }
+
+      .food {
+        background: var(--food);
+      }
+
+      .mobile-controls {
+        display: grid;
+        gap: 0.5rem;
+        justify-items: center;
+      }
+
+      .mobile-controls .row {
+        display: flex;
+        gap: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <section class="hud">
+        <div>Score: <strong data-score>0</strong></div>
+        <div>Status: <strong data-status>Running</strong></div>
+        <div class="actions">
+          <button type="button" data-pause>Pause</button>
+          <button type="button" data-restart>Restart</button>
+        </div>
+      </section>
+
+      <section class="board" data-board aria-label="Snake board"></section>
+
+      <section class="mobile-controls" aria-label="Directional controls">
+        <button type="button" data-dir="ArrowUp">↑</button>
+        <div class="row">
+          <button type="button" data-dir="ArrowLeft">←</button>
+          <button type="button" data-dir="ArrowDown">↓</button>
+          <button type="button" data-dir="ArrowRight">→</button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
